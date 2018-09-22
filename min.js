@@ -1,11 +1,29 @@
 document.querySelectorAll(".separator")[0].style.display= "none";
 
+$(document).ready(function() {
+    $('iframe[src*="youtube.com"]').wrap('<div style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;margin:0 auto;width:100%"></div>');
+    $('iframe[src*="youtube.com"]').css({
+        "position": "absolute",
+        "top": "0",
+        "left": "0",
+        "width": "100%",
+        "height": "100%",
+        "border": "0"
+    });
+    $('iframe[src*="youtube.com"]').each(function() {
+        $(this).attr("data-src", $(this).attr("src"));
+        $(this).attr("src", "")
+    });
+});
+
 function init() {
-var vidDefer = document.getElementsByTagName('iframe');
-for (var i=0; i<vidDefer.length; i++) {
-if(vidDefer[i].getAttribute('data-src')) {
-vidDefer[i].setAttribute('src',vidDefer[i].getAttribute('data-src'));
-} } }
+    var vidDefer = document.getElementsByTagName('iframe');
+    for (var i = 0; i < vidDefer.length; i++) {
+        if (vidDefer[i].getAttribute('data-src')) {
+            vidDefer[i].setAttribute('src', vidDefer[i].getAttribute('data-src'));
+        }
+    }
+}
 window.onload = init;
 
 function switchid(d){hideallids(),showdiv(d)}function hideallids(){for(var d=0;d<ids.length;d++)hidediv(ids[d])}function hidediv(d){document.getElementById?document.getElementById(d).style.display="none":document.layers?document.id.display="none":document.all.id.style.display="none"}function showdiv(d){document.getElementById?document.getElementById(d).style.display="block":document.layers?document.id.display="block":document.all.id.style.display="block"}var ids=new Array("a1","a2");
